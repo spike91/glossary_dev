@@ -7,7 +7,8 @@ $categoryLanguage = $language.'_category';
 @section('content')
     <table>
         <thead>
-            <tr><th></th></tr>
+            <tr><th>
+            </th></tr>
         </thead>
         <tbody>
             @foreach ($words as $w)

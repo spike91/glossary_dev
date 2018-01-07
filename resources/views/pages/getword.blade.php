@@ -5,12 +5,7 @@
 @section('content')
     <table>
         <thead>
-            <tr><th>
-            @if ( Auth::check() )            
-                @if( Auth::user()->isAdmin())
-                    <a class="nav-link proba" href="{{ LaravelLocalization::getLocalizedURL(null, '/description/add', [], true) }}">@lang('sidebar.add')</a>
-                @endif
-            @endif 
+            <tr><th>            
             </th></tr>
         </thead>
         <tbody>
