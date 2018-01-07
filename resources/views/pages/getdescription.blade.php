@@ -15,7 +15,8 @@
             @endif
        @endif        
     </p>
-    <img src="{{$description->image}}" class="thumb" alt="a picture">
+    @if($description->image)<img src="{{$description->image}}" class="thumb" alt="a picture">
+    @endif
     
     <p>{{$description->$language}}</p>
 @endsection
