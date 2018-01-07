@@ -1,0 +1,11 @@
+﻿INSERT INTO glossary.categories(russian,estonian,english) VALUES('Аппаратное обеспечение','Riistvara','Hardware');
+INSERT INTO glossary.words(estonian,russian,english) VALUES('Magnetketas','Mагнитный диск','Magnetic disk');
+INSERT INTO glossary.descriptions(word_fk,category_fk,estonian,english,russian) VALUES(2,2,'Magneeditava pinnakihiga lame ümarplaat, mille ühele või mõlemale küljele saab talletada andmeid','A flat circular plate with a magnetizable surface layer on one or both sides of which data can be stored','Плоская круглая пластина с намагничиваемым поверхностным слоем с одной или с обеих сторон, данные которой могут быть сохранены');
+
+INSERT INTO glossary.words(estonian,russian,english) VALUES('Printer','Принтер','Printer');
+INSERT INTO glossary.descriptions(word_fk,category_fk,estonian,english,russian) VALUES(3,2,' Väljundseade, mis jäädvustab andmed püsikoopiana, peamiselt ühte või mitmesse ettemääratud märgistikku kuuluvate diskreetsete kirjamärkide jadana','An output unit that produces a hard copy record of data mainly in the form of a sequence of discrete graphic characters belonging to one or more predetermined character sets','Блок вывода, который производит запись в твердой копии данных, в основном, в виде последовательности дискретных графических символов, принадлежащих одному или нескольким заданным наборам символов');
+
+INSERT INTO glossary.categories(russian,estonian,english) VALUES('Операционные системы','Operatsioonisüsteem','Operating Systems');
+INSERT INTO glossary.words(estonian,russian,english) VALUES('Atribuut','Aтрибут','Attribute');
+INSERT INTO glossary.descriptions(word_fk,category_fk,estonian,english,russian) VALUES(4,3,'Kasutajat või levinimistut kirjeldav andme üksus, mida saab kasutada selle kasutaja või nimistu lokaliseerimiseks sõnumipostisüsteemi füüsilises või organisatsioonilises struktuuris','A data item that describes a user or a distribution list and that can be used to locate this user or list in relation to the physical or organizational structure of a message handling system','Элемент данных, описывающий пользователя или таблицу, которые могут использоваться для поиска этого пользователя или каталога в физической или организационной структуре почтовой системы')
+
