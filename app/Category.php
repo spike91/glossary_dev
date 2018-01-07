@@ -8,6 +8,6 @@ class Category extends Model
 {
     public function descriptions() 
     {
-       return $this->belongsToMany(Description::class,'id');
+       return $this->belongsToMany(Description::class);
     }
 }

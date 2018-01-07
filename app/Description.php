@@ -10,12 +10,17 @@ class Description extends Model
     {
         return $this->belongsToMany(UserGlossary::class)->withPivot('cast');
     }
-    public function categories() 
+    public function category() 
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsTo(Category::class)->withPivot('cast');
     }
     public function word() 
     {
         return $this->belongsTo(Word::class,'id');
+    }
+
+    public function getCategory(){
+        $controller = new HomeController();
+        return $controller->getCategoryById($this->category_fk);
     }
 }

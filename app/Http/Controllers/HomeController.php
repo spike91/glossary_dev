@@ -107,6 +107,12 @@ return $words;
         return false;
     }
 
+    public function getCategoryByDescriptionId($id)
+    {
+        $category=App\Category::find($id);
+        return $category;
+    }
+
     public function glossaryByUserId($id)
     {
         $words=DB::table("words")
@@ -144,9 +150,8 @@ return $words;
         ->where('categories.id', $category_id)
         ->where('descriptions.word_fk', $word_id)
         ->select('descriptions.*')
-        ->get(); 
-        $categories=\App\Category::all();
-        return view("pages.getdescription",["word"=>$word,"description"=>$description,"categories"=>$categories]);
+        ->get();
+        return view("pages.getdescription",["word"=>$word,"description"=>$description[0]]);
     }
 
     public static function categories()
