@@ -5,7 +5,13 @@
 @section('content')
     <table>
         <thead>
-            <tr><th>Word</th></tr>
+            <tr><th>Words
+            @if ( Auth::check() )            
+                @if( Auth::user()->isAdmin())
+                    <a class="nav-link proba" href="{{ LaravelLocalization::getLocalizedURL(null, '/description/add', [], true) }}">@lang('sidebar.add')</a>
+                @endif
+            @endif 
+            </th></tr>
         </thead>
         <tbody>
             @foreach ($words as $w)
