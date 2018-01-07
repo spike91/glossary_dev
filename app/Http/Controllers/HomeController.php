@@ -35,7 +35,7 @@ class HomeController extends Controller
 
     public function descriptionAdd()
     {
-        return view("description.add");
+        return view("word.add");
     }
 
     public function categoryAdd()
