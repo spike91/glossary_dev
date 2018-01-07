@@ -3,11 +3,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <form class="form-inline my-2 my-lg-0"  action="{{ LaravelLocalization::getLocalizedURL(null, '/search', [], true) }}" method="get">
-        {{ csrf_field() }}
-            <input class="form-control mr-sm-2" id='search' type="search" placeholder="{{__('sidebar.search')}}" aria-label="Search" name="find">
-            <button class="btn btn-primary my-2 my-sm-0" type="submit">@lang('sidebar.search')</button>
-        </form>
+    @include('includes.search')    
 
 
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">

@@ -14,7 +14,7 @@ $categoryLanguage = $language.'_category';
             @foreach ($words as $w)
                 <tr>
                     <td><a href="{{ LaravelLocalization::getLocalizedURL(null, 'category='.$w->id_category.'/word='.$w->id, [], true) }}"
-                    class="list-group-item list-group-item-action">{{$w->$language}} ( {{($w->$categoryLanguage) }})</a></td>
+                     class="list-group-item list-group-item-action">{{$w->$language}} ({{ $w->$categoryLanguage }})</a></td>
                 </tr>
             @endforeach
         </tbody>
