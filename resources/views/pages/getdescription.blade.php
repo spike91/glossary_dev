@@ -5,7 +5,7 @@
 @section('content')
     <p>{{$word->$language}}   
         @if ( Auth::check() )
-            @if ( !Auth::user()->wordIsExistInGlossary($description[0]->id) )
+            @if ( !Auth::user()->wordIsExistInGlossary($description->id) )
                 <a href="{{ LaravelLocalization::getLocalizedURL(null, 'glossary/add/word/id='.$word->id, [], true) }}"><span>+</span></a>
             @else
                 <a href="{{ LaravelLocalization::getLocalizedURL(null, 'glossary/delete/word/id='.$word->id, [], true) }}"><span>-</span></a> 
@@ -15,5 +15,7 @@
             @endif
        @endif        
     </p>
-    <p>{{$description[0]->$language}}</p>
+    <img src="{{$description->image}}" class="thumb" alt="a picture">
+    
+    <p>{{$description->$language}}</p>
 @endsection
