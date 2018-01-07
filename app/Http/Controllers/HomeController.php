@@ -48,6 +48,11 @@ class HomeController extends Controller
         return view("category.edit");
     }
 
+    public function wordAdd()
+    {
+        return view("word.add");
+    }
+
     public function locale($locale)
     {    
         LaravelLocalization::setLocale($locale);
