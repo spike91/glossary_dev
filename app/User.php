@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Http\Controllers\HomeController;
 
 class User extends Authenticatable
 {
@@ -27,23 +26,4 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public function userGlossaries() 
-    {
-        return $this->belongsToMany(UserGlossary::class);
-    }
-
-    public function wordIsExistInGlossary($description) 
-    {
-        $controller = new HomeController();
-        return $controller->WordIsExistInGlossary($this->id,$description);
-    }
-
-    public function isAdmin()
-    {
-        $controller = new HomeController();
-        return $controller->isAdmin($this->id);
-    }
-
-    
 }
