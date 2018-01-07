@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App;
-use Auth;
 use App\Http\LaravelLocalization;
 use App\Word;
 use App\Category;
@@ -19,33 +18,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view("layouts.app");
-    }
-
-    public function dashboard()
-    {
-        $users=App\User::all();
-        return view("admin.dashboard", compact('users'));
-    }
-
-    public function descriptionEdit($id)
-    {
-        return view("description.edit");
-    }
-
-    public function descriptionAdd()
-    {
-        return view("description.add");
-    }
-
-    public function categoryAdd()
-    {
-        return view("category.add");
-    }
-
-    public function categoryEdit($id)
-    {
-        return view("category.edit");
+        $categories=\App\Category::all();
+        return view("layouts.app",["categories"=>$categories]);
     }
 
     public function locale($locale)
@@ -62,78 +36,16 @@ class HomeController extends Controller
 
     public function getWordsByName()
     {
-        $name = $_GET['find'];
+        $name = $_POST['find'];
         $words=DB::table("words")
         ->join('descriptions', 'words.id', '=', 'descriptions.word_fk')
         ->join('categories', 'categories.id', '=', 'descriptions.category_fk')     
-        ->where('words.english','ilike',"$name%")
-        ->orWhere('words.russian','ilike',"$name%")
-        ->orwhere('words.estonian','ilike',"$name%")
-        ->select('words.*', 'categories.id as id_category', 'categories.english as english_category', 'categories.estonian as estonian_category', 'categories.russian as russian_category')->get();
-
-
-        return view('pages.getwordsearch', ["words"=>$words]);
-    }
-
-    public function getWordsByNameLive($name)
-    {
-        $words=DB::table("words")
-        ->join('descriptions', 'words.id', '=', 'descriptions.word_fk')
-        ->join('categories', 'categories.id', '=', 'descriptions.category_fk')     
-        ->where('words.english','ilike',"$name%")
-        ->orWhere('words.russian','ilike',"$name%")
-        ->orwhere('words.estonian','ilike',"$name%")
-        ->select('words.*', 'categories.id as id_category', 'categories.english as english_category', 'categories.estonian as estonian_category', 'categories.russian as russian_category')->get();
-
-//optional, 
-return $words;
-    }
-
-    public function WordIsExistInGlossary($user,$description)
-    {
-        $raws=DB::table("userglossaries")  
-        ->where('userglossaries.user_fk','=',"$user")
-        ->where('userglossaries.description_fk','=',"$description")->get();
-
-        if(count($raws)>0) return true;
-        else return false;
-    }
-
-    public function isAdmin($user)
-    {
-        $user=App\User::find($user);
-
-        if($user && $user->isadmin) return true;
-        return false;
-    }
-
-    public function glossaryByUserId($id)
-    {
-        $words=DB::table("words")
-        ->join('descriptions', 'words.id', '=', 'descriptions.word_fk')
-        ->join('categories', 'categories.id', '=', 'descriptions.category_fk')
-        ->join('userglossaries', 'userglossaries.description_fk', '=', 'descriptions.id')    
-        ->where('userglossaries.user_fk','=',"$id")
-        ->select('words.*', 'categories.id as id_category', 'categories.english as english_category', 'categories.estonian as estonian_category', 'categories.russian as russian_category')->get();
-
-
-        return view('pages.glossary', ["words"=>$words]);
-    }
-
-    public function glossaryAddWord($id)
-    {
-        DB::table('userglossaries')->insert(
-            ['description_fk' => $id, 'user_fk' => Auth::user()->id]
-        );
-
-        return redirect()->back();  
-    }
-
-    public function glossaryDeleteWord($id)
-    {
-        DB::table('userglossaries')->where('description_fk', '=', $id)->where('user_fk', '=', Auth::user()->id)->delete();
-
-        return redirect()->back();  
+        ->where('words.english','ilike',"%$name%")
+        ->orWhere('words.russian','ilike',"%$name%")
+        ->orwhere('words.estonian','ilike',"%$name%")
+        ->select('words.id','words.english','categories.id as categoryID','categories.english as categoryEnglish')->get();
+        $categories=\App\Category::all();
+        return view('pages.getwordsearch', ["words"=>$words,"categories"=>$categories]);
     }
 
     public function descriptionByWordAndCategoryID($category_id, $word_id)
