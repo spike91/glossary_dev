@@ -3,32 +3,40 @@
     <head>  
         @include('includes.head')
     </head>
-    <body class="bg">
+    <body class="bodyy" >
         <header>
             @include('includes.header')
         </header>
-        <div class="main">
+        <div class="main" style="width: 75%">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                
+
+                    <div class="container padd2" >
+                        @include('includes.menu')
+                    </div> 
+
+                    </div>
+                    </div>
+
             <div class="container">
-                <div class="row">
-                    <div class="menuPadding">
-                    @include('includes.menu')</div>
-                        <div class="container contentPadding content" >
-                            <div class="row">
-                                <div class="col-md-4  offset-md-0">
-                                    @include('includes.sidebar')
-                                </div>
-                                <div class="col-md-8 offset-md-0">
-                                    @yield('content')
-                                </div>
-                                </div>
-                            </div> 
-                        </div>
+                <div class="row-fluid padd">
+                    <div class="col-md-4  offset-md-0 ">
+                        @include('includes.sidebar')
+                    </div>
+                    
+                    <div class="col-md-8 offset-md-0">
+                        @yield('content')
+                    </div>
+
                 </div>
-        </div> 
+                </div> 
+            
+
+
+        </div>
         <footer>
             @include('includes.footer')
         </footer>
     </body>
 </html>
-
-
