@@ -61,6 +61,6 @@ class Kernel extends HttpKernel
 		'localizationRedirect' => \App\Http\Middleware\LaravelLocalizationRedirectFilter::class,
 		'localeSessionRedirect' => \App\Http\Middleware\LocaleSessionRedirect::class,
         'localeViewPath' => \App\Http\Middleware\LaravelLocalizationViewPath::class,
-		
+		'admin' => \App\Http\Middleware\Admin::class,
     ];
 }
