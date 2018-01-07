@@ -12,5 +12,6 @@ return [
     'glossary' => 'Glossary',
     'dashboard' => 'Dashboard',
     'edit' => 'Edit',
-    'add' => 'Add'
+    'add' => 'Add',
+    'new' => 'New word'
 ];

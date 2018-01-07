@@ -12,6 +12,6 @@ return [
     'glossary' => 'Sõnastik',
     'dashboard' => 'Armatuurlaud',
     'edit' => 'Redigeeri',
-    'add' => 'Lisa'
-
+    'add' => 'Lisa',
+    'new' => 'Uus sõna'
 ];
