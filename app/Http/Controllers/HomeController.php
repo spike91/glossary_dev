@@ -50,7 +50,8 @@ class HomeController extends Controller
 
     public function wordAdd()
     {
-        return view("word.add");
+        $categories=App\Category::all();
+        return view("word.add", ['categories'=>$categories]);
     }
 
     public function locale($locale)
