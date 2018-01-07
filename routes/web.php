@@ -47,6 +47,8 @@ Route::group([
 	Route::get('/category/edit/id={id}', 'HomeController@categoryEdit');
 
 	Route::get('/word/add', 'HomeController@wordAdd');
+
+	Route::any('/word/save', 'HomeController@wordSave');
 	
 });
 
