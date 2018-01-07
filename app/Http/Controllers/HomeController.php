@@ -54,6 +54,13 @@ class HomeController extends Controller
         return view("word.add", ['categories'=>$categories]);
     }
 
+    public function wordSave()
+    {
+        $categories=App\Category::all();
+        $saved=true;
+        return view("word.add", ['categories'=>$categories, 'saved' => $saved]);
+    }
+
     public function locale($locale)
     {    
         LaravelLocalization::setLocale($locale);
