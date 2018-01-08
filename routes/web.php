@@ -24,8 +24,6 @@ Route::group([
 
 	Route::get('/category={id}', 'HomeController@getWordsByCategory');
 
-	Route::any('search', 'HomeController@getWordsByName');
-
 	Route::get('glossary/user/id={id}', 'HomeController@glossaryByUserId');
 
 	Route::get('glossary/add/word/id={id}', 'HomeController@glossaryAddWord');
@@ -49,10 +47,14 @@ Route::group([
 	Route::get('/word/add', 'HomeController@wordAdd');
 
 	Route::any('/word/save', 'HomeController@wordSave');
+
+	Route::any('search', 'HomeController@search');
+
+	Route::get('autocomplete', ['as'=>'autocomplete','uses'=>'AutoCompleteController@index']);
+
+	Route::get('searchajax',['as'=>'searchajax','uses'=>'AutoCompleteController@autoComplete']);
 	
 });
-
-Route::get('search-live={name}', 'HomeController@getWordsByNameLive');
 
 
 

@@ -114,7 +114,7 @@
   /*Animated +*/
 
   /* JUMP */
-  .p-2 {
+  .h3 {
    cursor: default;
    position: absolute;
    top: 0;
@@ -127,7 +127,7 @@
    display: block;
   }
 
- p span {
+ h3 span {
    position: relative;
    top: 1px;
    display: inline-block;
@@ -135,8 +135,16 @@
    font-family: 'Titan One', cursive;
    font-size: 45px;
    color: #3DA4B5;
-
   }
+
+  h3 span2 {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Titan One', cursive;
+    font-size: 45px;
+    color: rgb(181, 61, 71);
+   }
 
   /* ANIMATION */
   @-webkit-keyframes bounce {

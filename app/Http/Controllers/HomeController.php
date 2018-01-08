@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App;
 use Auth;
+use Input;
 use App\Http\LaravelLocalization;
 use App\Word;
 use App\Category;
@@ -35,7 +36,7 @@ class HomeController extends Controller
 
     public function descriptionAdd()
     {
-        return view("description.add");
+        return view("word.add");
     }
 
     public function categoryAdd()
@@ -61,45 +62,21 @@ class HomeController extends Controller
         return view("word.add", ['categories'=>$categories, 'saved' => $saved]);
     }
 
-    public function locale($locale)
-    {    
-        LaravelLocalization::setLocale($locale);
-        return redirect()->back();   
-    }
-
-    public function wordByID($id)
+    public function search()
     {
-        $word=\App\Word::find($id);
-        return view('pages.getword', compact('word'));
-    }
-
-    public function getWordsByName()
-    {
-        $name = $_GET['find'];
-        $words=DB::table("words")
+        $name = Input::get('search_text');
+        $words = DB::table("words")
         ->join('descriptions', 'words.id', '=', 'descriptions.word_fk')
         ->join('categories', 'categories.id', '=', 'descriptions.category_fk')     
         ->where('words.english','ilike',"$name%")
         ->orWhere('words.russian','ilike',"$name%")
         ->orwhere('words.estonian','ilike',"$name%")
-        ->select('words.*', 'categories.id as id_category', 'categories.english as english_category', 'categories.estonian as estonian_category', 'categories.russian as russian_category')->get();
+        ->select('words.*', 'categories.id as id_category', 
+        'categories.english as english_category', 
+        'categories.estonian as estonian_category', 
+        'categories.russian as russian_category')->get();
 
-
-        return view('pages.getwordsearch', ["words"=>$words]);
-    }
-
-    public function getWordsByNameLive($name)
-    {
-        $words=DB::table("words")
-        ->join('descriptions', 'words.id', '=', 'descriptions.word_fk')
-        ->join('categories', 'categories.id', '=', 'descriptions.category_fk')     
-        ->where('words.english','ilike',"$name%")
-        ->orWhere('words.russian','ilike',"$name%")
-        ->orwhere('words.estonian','ilike',"$name%")
-        ->select('words.*', 'categories.id as id_category', 'categories.english as english_category', 'categories.estonian as estonian_category', 'categories.russian as russian_category')->get();
-
-//optional, 
-return $words;
+        return view('pages.getwordsearch', ['words' => $words]);
     }
 
     public function WordIsExistInGlossary($user,$description)
@@ -133,8 +110,10 @@ return $words;
         ->join('categories', 'categories.id', '=', 'descriptions.category_fk')
         ->join('userglossaries', 'userglossaries.description_fk', '=', 'descriptions.id')    
         ->where('userglossaries.user_fk','=',"$id")
-        ->select('words.*', 'categories.id as id_category', 'categories.english as english_category', 'categories.estonian as estonian_category', 'categories.russian as russian_category')->get();
-
+        ->select('words.*', 'categories.id as id_category', 
+        'categories.english as english_category', 
+        'categories.estonian as estonian_category', 
+        'categories.russian as russian_category')->get();
 
         return view('pages.glossary', ["words"=>$words]);
     }
@@ -164,7 +143,9 @@ return $words;
         ->where('descriptions.word_fk', $word_id)
         ->select('descriptions.*')
         ->get();
-        return view("pages.getdescription",["word"=>$word,"description"=>$description[0]]);
+
+        $category=\App\Category::find($category_id);
+        return view("pages.getdescription",["word"=>$word,"description"=>$description[0],"category"=>$category]);
     }
 
     public static function categories()
@@ -182,6 +163,7 @@ return $words;
         ->get(); 
         $category=\App\Category::find($id);
         $categories=\App\Category::all();
+
         return view("pages.getword",["words"=>$words,"categories"=>$categories,"category"=>$category]);
     }
 

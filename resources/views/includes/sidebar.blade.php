@@ -17,4 +17,5 @@
             @endif
             </span>
         @endforeach
+        <br/>
 </div>

@@ -5,9 +5,11 @@ $categoryLanguage = $language.'_category';
 @extends('layouts.app')
 
 @section('content')
+<h4>@lang('sidebar.glossary')</h4>
+<hr/>
     <table>
         <thead>
-            <tr><th>Word</th></tr>
+            <tr><th></th></tr>
         </thead>
         <tbody>
             @foreach ($words as $w)

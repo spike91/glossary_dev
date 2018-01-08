@@ -1,16 +1,14 @@
 <!doctype html>
 <?php $language = strtolower(LaravelLocalization::getCurrentLocaleName())?>
+<?php $categoryName = strtolower(LaravelLocalization::getCurrentLocaleName())?>
 @extends('layouts.app')
 
 @section('content')
+<h4>{{$category->$categoryName}}</h4>
+<hr/>
     <table>
         <thead>
-            <tr><th>Words
-            @if ( Auth::check() )            
-                @if( Auth::user()->isAdmin())
-                    <a class="nav-link proba" href="{{ LaravelLocalization::getLocalizedURL(null, '/description/add', [], true) }}">@lang('sidebar.add')</a>
-                @endif
-            @endif 
+            <tr><th>            
             </th></tr>
         </thead>
         <tbody>

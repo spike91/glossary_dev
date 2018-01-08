@@ -2,9 +2,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <p> This is dashboard.</p>
 
-    <table>
+    <table border="1" cellpadding="10">
         <thead>
             <tr>
             <th>Name</th>
