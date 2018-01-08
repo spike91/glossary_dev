@@ -17,7 +17,7 @@
                 <tr>
                     <td>{{$u->name}}</td>
                     <td>{{$u->email}}</td>
-                    <td>{{$u->create_at}}</td>
+                    <td>{{$u->created_at}}</td>
                     <td>{{$u->isadmin}}</td>
                 </tr>
             @endforeach
