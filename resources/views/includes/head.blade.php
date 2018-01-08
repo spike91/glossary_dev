@@ -1,5 +1,5 @@
 <meta charset="UTF-8">
-<title></title>
+<title>Glossary | Sõnastik | Словарь</title>
 
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

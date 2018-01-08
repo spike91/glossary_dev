@@ -144,7 +144,8 @@ class HomeController extends Controller
         ->select('descriptions.*')
         ->get();
 
-        return view("pages.getdescription",["word"=>$word,"description"=>$description[0]]);
+        $category=\App\Category::find($category_id);
+        return view("pages.getdescription",["word"=>$word,"description"=>$description[0],"category"=>$category]);
     }
 
     public static function categories()

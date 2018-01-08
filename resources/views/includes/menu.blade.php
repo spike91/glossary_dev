@@ -29,14 +29,12 @@
                 <li class="nav-item active"><a class="nav-link" href="{{ LaravelLocalization::getLocalizedURL(null, '/word/add', [], true) }}">@lang('sidebar.new')</a></li>
                 <li class="nav-item active"><a class="nav-link" href="{{ LaravelLocalization::getLocalizedURL(null, '/dashboard', [], true) }}">@lang('sidebar.dashboard')</a></li>
             @endif
+            <li class="nav-item active"><a class="nav-link" href="{{ LaravelLocalization::getLocalizedURL(null, '/glossary/user/id='.Auth::user()->id, [], true) }}">@lang('sidebar.glossary')</a></li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-expanded="false">
                     {{ Auth::user()->name }} <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                <li>
-                <a class="nav-link" href="{{ LaravelLocalization::getLocalizedURL(null, '/glossary/user/id='.Auth::user()->id, [], true) }}">@lang('sidebar.glossary')</a>
-                    </li>
                     <li>
                     <a class="nav-link" href="{{ LaravelLocalization::getLocalizedURL(null, '/logout', [], true) }}"
                             onclick="event.preventDefault();

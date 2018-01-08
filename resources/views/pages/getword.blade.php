@@ -1,8 +1,11 @@
 <!doctype html>
 <?php $language = strtolower(LaravelLocalization::getCurrentLocaleName())?>
+<?php $categoryName = strtolower(LaravelLocalization::getCurrentLocaleName())?>
 @extends('layouts.app')
 
 @section('content')
+<h4>{{$category->$categoryName}}</h4>
+<hr/>
     <table>
         <thead>
             <tr><th>            
