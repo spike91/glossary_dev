@@ -34,14 +34,17 @@ class HomeController extends Controller
         return view("description.edit");
     }
 
-    public function descriptionAdd()
-    {
-        return view("word.add");
-    }
-
     public function categoryAdd()
     {
         return view("category.add");
+    }
+
+    public function categorySave()
+    {
+        DB::table('categories')->insert([
+            ['english' => Input::get('english'), 'estonian' => Input::get('estonian'), 'russian' => Input::get('russian')]
+        ]);
+        return view("layouts.app");
     }
 
     public function categoryEdit($id)
@@ -57,9 +60,40 @@ class HomeController extends Controller
 
     public function wordSave()
     {
-        $categories=App\Category::all();
-        $saved=true;
-        return view("word.add", ['categories'=>$categories, 'saved' => $saved]);
+        if(empty(Input::get('image'))){
+            $image = null;
+        }else        $image = Input::get('image');
+        $word_english =Input::get('word_english');
+        $word_estonian =Input::get('word_estonian');
+        $word_russian =Input::get('word_russian');
+
+        $word=DB::table("words")    
+        ->where('words.english','ilike',"$word_english")
+        ->where('words.russian','ilike',"$word_russian")
+        ->where('words.estonian','ilike',"$word_estonian")
+        ->select('words.*')->get();
+
+        if(count($word)==0){
+            DB::table('words')->insert([
+                ['english' => $word_english, 'estonian' =>  Input::get('word_estonian'), 'russian' => Input::get('word_russian')]
+            ]);
+
+            $word=DB::table("words")    
+        ->where('words.english','ilike',"$word_english")
+        ->where('words.russian','ilike',"$word_russian")
+        ->where('words.estonian','ilike',"$word_estonian")
+        ->select('words.*')->get();
+        }
+        $wordId=$word[0]->id;
+        
+
+
+        DB::table('descriptions')->insert([
+            ['english' => Input::get('desc_english'), 'estonian' => Input::get('desc_estonian'), 
+            'russian' => Input::get('desc_russian'), 'image' => Input::get('image'), 'category_fk' => Input::get('category'), 'word_fk' => $wordId]
+        ]);
+
+        return view("layouts.app");
     }
 
     public function search()

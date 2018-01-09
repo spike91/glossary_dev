@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-   {!! Form::open() !!}<!-- Ссылка, куда отправить после нажатия на добавить-->
+   {!! Form::open(['url'=> LaravelLocalization::getLocalizedURL(null, '/category/save', [], true), 'class'=>'form-inline my-2 my-lg-0', 'method' => 'get', 'id' => 'category-add-form']) !!}<!-- Ссылка, куда отправить после нажатия на добавить-->
     <div class="form-group col-md-6 col-md-offset-4">
       {!! Form::label('russian', 'Название категории на русском:') !!}
       {!! Form::text('russian', null, ['class'=>'form-control','maxlength' => 255,'required']) !!}
