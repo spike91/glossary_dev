@@ -11,7 +11,7 @@
       {!! Form::text('estonian', null, ['class'=>'form-control','maxlength' => 255,'required']) !!}
     </div>
     <div class="form-group col-md-6 col-md-offset-4">
-      {!! Form::submit('Add category', ['class'=>'btn btn-info form-control']) !!}
+      {!! Form::submit(__('Add category'), ['class'=>'btn btn-info form-control']) !!}
     </div>
   {!! Form::close() !!}
 @endsection
