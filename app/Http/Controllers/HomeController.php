@@ -29,27 +29,29 @@ class HomeController extends Controller
         return view("admin.dashboard", compact('users'));
     }
 
-    public function descriptionEdit($id)
-    {
-        return view("description.edit");
-    }
-
     public function categoryAdd()
     {
         return view("category.add");
     }
 
-    public function categorySave()
+    public function categorySave($id = null)
     {
+        if($id == null){
         DB::table('categories')->insert([
             ['english' => Input::get('english'), 'estonian' => Input::get('estonian'), 'russian' => Input::get('russian')]
         ]);
+        } else {
+            DB::table('categories')->where('id', $id)->update([
+                'english' => Input::get('english'), 'estonian' => Input::get('estonian'), 'russian' => Input::get('russian')
+            ]);
+        }
         return view("layouts.app");
     }
 
     public function categoryEdit($id)
     {
-        return view("category.edit");
+        $category=Category::find($id);
+        return view("category.edit", compact('category'));
     }
 
     public function wordAdd()
