@@ -54,6 +54,12 @@ class HomeController extends Controller
         return view("category.edit", compact('category'));
     }
 
+    public function categoryDelete($id)
+    {
+        Category::destroy($id);
+        return view("layouts.app");
+    }
+
     public function wordAdd()
     {
         $categories=App\Category::all();
