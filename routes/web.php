@@ -42,7 +42,7 @@ Route::group([
 
 	Route::get('/category/add', 'HomeController@categoryAdd');
 
-	Route::get('/category/save', 'HomeController@categorySave');
+	Route::get('/category/save/{id?}', 'HomeController@categorySave');
 
 	Route::get('/category/edit/id={id}', 'HomeController@categoryEdit');
 
