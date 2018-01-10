@@ -42,6 +42,8 @@ Route::group([
 
 	Route::get('/category/add', 'HomeController@categoryAdd');
 
+	Route::get('/category/delete/id={id}', 'HomeController@categoryDelete');
+
 	Route::get('/category/save/{id?}', 'HomeController@categorySave');
 
 	Route::get('/category/edit/id={id}', 'HomeController@categoryEdit');
