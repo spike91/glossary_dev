@@ -84,8 +84,7 @@ class HomeController extends Controller
         ->where('words.estonian','ilike',"$word_estonian")
         ->select('words.*')->get();
         }
-        $wordId=$word[0]->id;
-        
+        $wordId=$word[0]->id;     
 
 
         DB::table('descriptions')->insert([

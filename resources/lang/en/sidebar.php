@@ -13,5 +13,6 @@ return [
     'dashboard' => 'Dashboard',
     'edit' => 'Edit',
     'add' => 'Add',
-    'new' => 'New word'
+    'new' => 'New word',
+    'lang' => 'english'
 ];

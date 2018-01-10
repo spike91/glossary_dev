@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<?php $categoryName = strtolower(LaravelLocalization::getCurrentLocaleName())?>
 @section('content')
 <H3 align="center">@lang('sidebar.new')</H3>
 <hr/>
@@ -24,11 +24,15 @@
       {!! Form::label('image', 'Link:') !!}
       {!! Form::text('image', null, ['class'=>'form-control', 'maxlength' => 255]) !!}
     </div>
-     <div class="form-group col-md-6 col-md-offset-3">
-      {!!Form::select('category', $categories->pluck('english'), ['class'=>'form-control','required']) !!}
+     <div class="form-group col-md-6 col-md-offset-3">     
+     <select class="form-control" name="category" require>
+        @foreach($categories as $category)
+          <option value="{{ $category->id }}">{{ $category->$categoryName }}</option>
+        @endforeach
+      </select>
     </div> 
     <div class="form-group col-md-8 col-md-offset-4">
-      {!! Form::submit('Add word', ['class'=>'btn btn-info form-control']) !!}
+      {!! Form::submit(__('Add Word'), ['class'=>'btn btn-info form-control']) !!}
     </div>
   {!! Form::close() !!}
 @endsection

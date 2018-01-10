@@ -13,5 +13,6 @@ return [
     'dashboard' => 'Armatuurlaud',
     'edit' => 'Redigeeri',
     'add' => 'Lisa',
-    'new' => 'Uus sõna'
+    'new' => 'Uus sõna',
+    'lang' => 'estonian'
 ];
