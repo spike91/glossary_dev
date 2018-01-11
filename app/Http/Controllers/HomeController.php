@@ -60,10 +60,16 @@ class HomeController extends Controller
         return view("layouts.app");
     }
 
-    public function wordAdd()
+    public function wordAdd($id=null)
     {
+        $word=null;
+        $description=null;
+        $description = Description::find($id);
+        if($description != null)
+        $word = Word::find($description->word_fk);
         $categories=App\Category::all();
-        return view("word.add", ['categories'=>$categories]);
+
+        return view("word.add", ['categories'=>$categories,'word'=>$word,'description'=>$description]);
     }
 
     public function wordSave()
