@@ -10,6 +10,7 @@ use Input;
 use App\Http\LaravelLocalization;
 use App\Word;
 use App\Category;
+use App\Description;
 
 class HomeController extends Controller
 {
@@ -105,6 +106,49 @@ class HomeController extends Controller
             ['english' => Input::get('desc_english'), 'estonian' => Input::get('desc_estonian'), 
             'russian' => Input::get('desc_russian'), 'image' => Input::get('image'), 'category_fk' => Input::get('category'), 'word_fk' => $wordId]
         ]);
+
+        return view("layouts.app");
+    }
+
+    public function wordUpdate()
+    {
+        $descId=Input::get('descId');
+        $wordId = Input::get('wordId');
+        $word = Word::find($wordId);
+        $description = Description::find($descId);
+        
+        $word_english =Input::get('word_english');
+        $word_estonian =Input::get('word_estonian');
+        $word_russian =Input::get('word_russian');
+        
+        $desc_english =Input::get('desc_english');
+        $desc_estonian =Input::get('desc_estonian');
+        $desc_russian =Input::get('desc_russian');
+        $desc_category =Input::get('category');
+
+        if(empty(Input::get('image'))){
+            $image = null;
+        }else $image = Input::get('image');
+
+        if($word->english != $word_english 
+        or $word->estonian != $word_estonian 
+        or $word->russian != $word_russian){
+            DB::table('words')->where('id', $word->id)->update([
+                'english' => $word_english, 'estonian' =>  $word_estonian, 'russian' => $word_russian
+            ]);
+        }
+
+        if($description->english != $desc_english 
+        or $description->estonian != $desc_estonian 
+        or $description->russian != $desc_russian
+        or $description->category_fk != $desc_category
+        or $description->image != $image){
+            DB::table('descriptions')->where('id', $description->id)->update([
+                'english' => $desc_english, 'estonian' =>  $desc_estonian, 
+                'russian' => $desc_russian, 'category_fk' => $desc_category,
+                'image' => $image
+            ]);
+        }
 
         return view("layouts.app");
     }
