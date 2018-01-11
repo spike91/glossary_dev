@@ -2,7 +2,7 @@
 {!! Form::open(['url'=> LaravelLocalization::getLocalizedURL(null, '/search', [], true), 'class'=>'form-inline my-2 my-lg-0', 'method' => 'get', 'id' => 'search-form'] ) !!}
         {{ csrf_field() }}
     <div class="input-append spancustom">
-        {!! Form::text('search_text', null, ['class'=>'form-control mr-sm-2','id' => 'search_text', 'maxlength' => 50,'minlength' => 3,'required']) !!}
+        {!! Form::text('search_text', null, ['class'=>'form-control mr-sm-2','id' => 'search_text', 'maxlength' => 60,'minlength' => 1,'required']) !!}
         {!! Form::submit(Lang::get('sidebar.search'), array('class' => 'btn btn-primary my-2 my-sm-0')) !!}
     </div>
     {!! Form::close() !!}
