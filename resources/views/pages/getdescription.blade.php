@@ -16,7 +16,7 @@
             @endif
             @if( Auth::user()->isAdmin())
             <b>&nbsp;&nbsp;&nbsp;
-            <a href="{{ LaravelLocalization::getLocalizedURL(null, '/description/edit/id='.$description->id, [], true) }}" style="color: #0A0237">@lang('sidebar.edit')</a>
+            <a href="{{ LaravelLocalization::getLocalizedURL(null, '/word/add/'.$description->id, [], true) }}" style="color: #0A0237">@lang('sidebar.edit')</a>
             </b>
                 @endif
        @endif        
